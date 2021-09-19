@@ -1,9 +1,9 @@
 package com.sysprog.lab1;
 
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class Main {
@@ -24,6 +24,12 @@ public class Main {
         return FileSystems.getDefault().getPath(arg).toAbsolutePath();
     }
 
+    private static <T> void printCollection(Collection<T> collection) {
+        for (var word : collection) {
+            System.out.println(word);
+        }
+    }
+
     public static void main(String[] args)
     {
         final Path filePath;
@@ -35,8 +41,14 @@ public class Main {
             return;
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath.toString()))){
-            // code
+        try (FileReader fr = new FileReader(filePath.toString())){
+            final WordReader wrReader = new FileWordReader(fr);
+            final WordStorage storage = new MaxUniqueLetterWordStorage();
+            while (wrReader.haveNext()) {
+                storage.addWord(wrReader.next());
+            }
+
+            printCollection(storage.getWords());
         } catch (Exception ex) {
             System.err.println(ex.getLocalizedMessage());
         }
