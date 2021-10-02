@@ -30,6 +30,22 @@ public class Main {
         }
     }
 
+    private static Automaton readAutomaton(FileReader file)
+    {
+        Scanner sc = new Scanner(file);
+        /* final int nAlphabet = */ sc.nextInt();
+        final int nState = sc.nextInt();
+        final int startState = sc.nextInt();
+        Automaton automaton = new Automaton(nState, startState);
+        while (sc.hasNext()) {
+            final int curState = sc.nextInt();
+            final int input = sc.next().codePointAt(0);
+            final int nextState = sc.nextInt();
+            automaton.addTransition(curState, input, nextState);
+        }
+        return automaton;
+    }
+
     public static void main(String[] args)
     {
         final Path filePath;
@@ -41,8 +57,8 @@ public class Main {
             return;
         }
 
-        try (FileReader fr = new FileReader(filePath.toString())){
-            
+        try (FileReader fr = new FileReader(filePath.toString())) {
+            Automaton automaton = readAutomaton(fr);
         } catch (Exception ex) {
             System.err.println(ex.getLocalizedMessage());
         }
