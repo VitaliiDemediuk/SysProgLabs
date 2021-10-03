@@ -1,4 +1,4 @@
-package com.sysprog.lab1;
+package com.sysprog.lab2;
 
 import java.io.FileReader;
 import java.nio.file.FileSystems;
@@ -37,6 +37,11 @@ public class Main {
         final int nState = sc.nextInt();
         final int startState = sc.nextInt();
         Automaton automaton = new Automaton(nState, startState);
+        final int nFinalState = sc.nextInt();
+        for (int i = 0; i < nFinalState; ++i) {
+            final int st = sc.nextInt();
+            automaton.addFinalState(st);
+        }
         while (sc.hasNext()) {
             final int curState = sc.nextInt();
             final int input = sc.next().codePointAt(0);
@@ -58,7 +63,11 @@ public class Main {
         }
 
         try (FileReader fr = new FileReader(filePath.toString())) {
-            Automaton automaton = readAutomaton(fr);
+            final Automaton automaton = readAutomaton(fr);
+            System.out.println("Dead states:");
+            printCollection(automaton.deadStates());
+            System.out.println("Unreachable states:");
+            printCollection(automaton.unreachableStates());
         } catch (Exception ex) {
             System.err.println(ex.getLocalizedMessage());
         }
