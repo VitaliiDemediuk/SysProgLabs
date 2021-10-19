@@ -73,15 +73,22 @@ public class Automaton {
         return visited;
     }
 
-    public Set<Integer> deadStates()
-    {
+    public Set<Integer> deadStates() {
         final Set<Integer> result = new HashSet<>();
+        final ArrayList<Boolean> undeadStates = new ArrayList<>(Collections.nCopies(statesFrom.size(), false));
+
         for (var finalSt : finalStates) {
-            final var visited = bfs(statesFrom, finalSt);
+            final var visited = formReachableList(statesFrom, finalSt);
             for (int i = 0; i < visited.size(); ++i) {
-                if (!visited.get(i)) {
-                    result.add(i);
+                if (visited.get(i)) {
+                    undeadStates.set(i, true);
                 }
+            }
+        }
+
+        for (int i = 0; i < undeadStates.size(); ++i) {
+            if (!undeadStates.get(i)) {
+                result.add(i);
             }
         }
         return result;
