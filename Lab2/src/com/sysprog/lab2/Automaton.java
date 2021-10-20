@@ -79,7 +79,9 @@ public class Automaton {
         for (var finalSt : finalStates) {
             final var visited = bfs(statesFrom, finalSt);
             for (int i = 0; i < visited.size(); ++i) {
-                if (!visited.get(i)) {
+                if (visited.get(i)) {
+                    result.remove(i);
+                } else {
                     result.add(i);
                 }
             }
