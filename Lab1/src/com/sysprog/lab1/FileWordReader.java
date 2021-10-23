@@ -33,7 +33,7 @@ public class FileWordReader implements WordReader {
         String res = sb.toString();
         sb.delete(0, sb.length());
         wordRead = false;
-        return res.toLowerCase(Locale.ROOT);
+        return res;
     }
 
     private void readWord() {

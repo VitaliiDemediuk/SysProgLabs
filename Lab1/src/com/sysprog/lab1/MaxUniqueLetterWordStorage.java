@@ -1,6 +1,7 @@
 package com.sysprog.lab1;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 public class MaxUniqueLetterWordStorage implements WordStorage {
@@ -9,6 +10,7 @@ public class MaxUniqueLetterWordStorage implements WordStorage {
 
     public void addWord(String word)
     {
+        word = word.toLowerCase(Locale.ROOT);
         int unCount = uniqueLetterCount(word);
         if (unCount < maxUniqueLetterCount) {
             return;
