@@ -1,12 +1,14 @@
 package com.sysprog.lab3;
 
+import java.io.FileReader;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.Scanner;
 
 public class Main {
 
-    private static Path getFilePath(String[] args) throws IllegalArgumentException {
+    private static Path getFilePath(String[] args) throws IllegalArgumentException
+    {
         String arg;
         if (args.length > 1) {
             throw new IllegalArgumentException("");
@@ -33,6 +35,10 @@ public class Main {
             return;
         }
 
-
+        try (FileReader fr = new FileReader(filePath.toString())){
+            CharSource source = new FileCharSource(fr);
+        } catch (Exception ex) {
+            System.err.println(ex.getLocalizedMessage());
+        }
     }
 }
