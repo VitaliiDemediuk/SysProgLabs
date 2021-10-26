@@ -7,6 +7,11 @@ import java.io.IOException;
 public class FileCharSource implements CharSource {
 
     final BufferedReader br;
+    private boolean mayHaveNext;
+
+    {
+        mayHaveNext = true;
+    }
 
     public FileCharSource(FileReader fileReader)
     {
@@ -15,6 +20,10 @@ public class FileCharSource implements CharSource {
 
     @Override
     public boolean hasNext() {
+        if (!mayHaveNext){
+            return false;
+        }
+
         try {
             return br.ready();
         } catch (IOException ex) {
@@ -28,6 +37,7 @@ public class FileCharSource implements CharSource {
         try {
             return br.read();
         } catch (IOException ex) {
+            mayHaveNext = false;
             return '\0';
         }
     }
