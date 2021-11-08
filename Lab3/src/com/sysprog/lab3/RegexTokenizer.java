@@ -37,7 +37,7 @@ public class RegexTokenizer {
         while (matcher.find(curPos)) {
             final String lexeme = code.substring(matcher.start(), matcher.end());
             final TokenPattern tokenPattern = keyWords.contains(lexeme) ? TokenPattern.keyWord : pattern(lexeme);
-            tokens.add(new Token(lexeme, pattern(lexeme), forwardInput(curPos, matcher, code)));
+            tokens.add(new Token(lexeme, tokenPattern, forwardInput(curPos, matcher, code)));
             curPos = matcher.end();
         }
         if (curPos < code.length()) {

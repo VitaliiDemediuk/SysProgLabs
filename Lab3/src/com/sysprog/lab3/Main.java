@@ -61,10 +61,10 @@ public class Main {
         final Path lexemesPath;
         final Path filePath;
         try {
-//            lexemesPath = FileSystems.getDefault().getPath("lexemes.json").toAbsolutePath();
-//            filePath = FileSystems.getDefault().getPath("test.c").toAbsolutePath();
-            lexemesPath = getFilePath(args, 0);
-            filePath = getFilePath(args, 1);
+            lexemesPath = FileSystems.getDefault().getPath("lexemes.json").toAbsolutePath();
+            filePath = FileSystems.getDefault().getPath("test.c").toAbsolutePath();
+//            lexemesPath = getFilePath(args, 0);
+//            filePath = getFilePath(args, 1);
         } catch (IllegalArgumentException ex) {
             System.err.println(ex.getLocalizedMessage());
             System.exit(1);
