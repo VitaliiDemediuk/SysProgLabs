@@ -1,0 +1,8 @@
+{
+  "key_words" : ["auto", "break", "case", "char", "const", "continue", "default", "do", "double", "else", "enum","extern", "float", "for", "goto","if", "inline", "int", "long", "register","restrict", "return", "short", "signed", "sizeof", "static", "struct", "switch", "typedef", "union", "unsigned", "void", "volatile", "while"],
+  "lexemes"   :
+    [ {"name": "one line comment", "regex": "\\/\\/.*", "color": "cyan"},
+      {"name": "multiline comment", "regex": "\\/\\*(.|\\n)*\\*\\/", "color": "cyan"},
+      {"name": "", "regex": "", "color": ""}
+  ]
+}

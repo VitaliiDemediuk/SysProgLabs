@@ -3,13 +3,17 @@ package com.sysprog.lab3;
 import java.util.regex.Pattern;
 
 public class TokenPattern {
-    final String id;
+    final String name;
     final Pattern pattern;
     final ConsoleColor color;
 
-    TokenPattern(String aId, String aPatternString, ConsoleColor aColor)
+    // hard code
+    final public static TokenPattern keyWord = new TokenPattern("Key word", "", ConsoleColor.YELLOW);
+    final public static TokenPattern unrecognizedLexeme = new TokenPattern("Unrecognized lexeme", "", ConsoleColor.RED);
+
+    TokenPattern(String aName, String aPatternString, ConsoleColor aColor)
     {
-        id = aId;
+        name = aName;
         pattern = Pattern.compile(aPatternString);
         color = aColor;
     }
