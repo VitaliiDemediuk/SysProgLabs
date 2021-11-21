@@ -29,7 +29,14 @@
       {"state": "24", "is_final_state": true, "name": "operator", "color": "blue"},
       {"state": "25", "is_final_state": true, "name": "operator", "color": "blue"},
       {"state": "26", "is_final_state": true, "name": "operator", "color": "blue"},
-      {"state": "27", "is_final_state": true, "name": "identifier", "color": "yellow"}
+      {"state": "27", "is_final_state": true, "name": "identifier", "color": "white"},
+      {"state": "28", "is_final_state": true, "name": "decimal constant", "color": "magenta"},
+      {"state": "29", "is_final_state": true, "name": "decimal constant", "color": "magenta"},
+      {"state": "30", "is_final_state": true, "name": "octal constant", "color": "magenta"},
+      {"state": "31", "is_final_state": false},
+      {"state": "32", "is_final_state": true, "name": "hex constant", "color": "magenta"},
+      {"state": "33", "is_final_state": true, "name": "float constant", "color": "magenta"},
+      {"state": "34", "is_final_state": true, "name": "float constant", "color": "magenta"}
     ],
   "transitions" :
     [ {"state": "0", "input": ["/"], "move_to": "1"},
@@ -73,6 +80,17 @@
       {"state": "24", "input": [">"], "move_to": "25"},
       {"state": "24", "input": ["-"], "move_to": "26"},
       {"state": "0", "input": "[A-Za-z_]", "move_to": "27"},
-      {"state": "27", "input": "\\w", "move_to": "27"}
+      {"state": "27", "input": "\\w", "move_to": "27"},
+      {"state": "0", "input": "[1-9]", "move_to": "28"},
+      {"state": "28", "input": "[0-9]", "move_to": "28"},
+      {"state": "28", "input": ["."], "move_to": "33"},
+      {"state": "33", "input": "[0-9]", "move_to": "34"},
+      {"state": "34", "input": "[0-9]", "move_to": "34"},
+      {"state": "0", "input": ["0"], "move_to": "29"},
+      {"state": "29", "input": "[0-7]", "move_to": "30"},
+      {"state": "30", "input": "[0-7]", "move_to": "30"},
+      {"state": "29", "input": ["x"], "move_to": "31"},
+      {"state": "31", "input": "[A-F0-9]", "move_to": "32"},
+      {"state": "32", "input": "[A-F0-9]", "move_to": "32"}
     ]
 }
