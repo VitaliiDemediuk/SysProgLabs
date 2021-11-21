@@ -36,7 +36,16 @@
       {"state": "31", "is_final_state": false},
       {"state": "32", "is_final_state": true, "name": "hex constant", "color": "magenta"},
       {"state": "33", "is_final_state": true, "name": "float constant", "color": "magenta"},
-      {"state": "34", "is_final_state": true, "name": "float constant", "color": "magenta"}
+      {"state": "34", "is_final_state": true, "name": "float constant", "color": "magenta"},
+      {"state": "35", "is_final_state": false},
+      {"state": "36", "is_final_state": false},
+      {"state": "37", "is_final_state": true, "name": "string constant", "color": "yellow"},
+      {"state": "38", "is_final_state": false},
+      {"state": "39", "is_final_state": false},
+      {"state": "40", "is_final_state": false},
+      {"state": "41", "is_final_state": true, "name": "char constant", "color": "yellow"},
+      {"state": "42", "is_final_state": false},
+      {"state": "43", "is_final_state": true, "name": "preprocessor directive", "color": "cyan"}
     ],
   "transitions" :
     [ {"state": "0", "input": ["/"], "move_to": "1"},
@@ -91,6 +100,18 @@
       {"state": "30", "input": "[0-7]", "move_to": "30"},
       {"state": "29", "input": ["x"], "move_to": "31"},
       {"state": "31", "input": "[A-F0-9]", "move_to": "32"},
-      {"state": "32", "input": "[A-F0-9]", "move_to": "32"}
+      {"state": "32", "input": "[A-F0-9]", "move_to": "32"},
+      {"state": "0", "input": ["\""], "move_to": "35"},
+      {"state": "35", "input": "[^\"]", "move_to": "36"},
+      {"state": "36", "input": "[^\"]", "move_to": "36"},
+      {"state": "36", "input": ["\""], "move_to": "37"},
+      {"state": "0", "input": ["'"], "move_to": "38"},
+      {"state": "38", "input": "[^\\\\^\\n^']", "move_to": "40"},
+      {"state": "40", "input": "[\"'\"]", "move_to": "41"},
+      {"state": "38", "input": ["\\"], "move_to": "39"},
+      {"state": "39", "input": ["r", "n", "t", "v", "\"", "'", "\\", "0", "?", "a"], "move_to": "40"},
+      {"state": "0", "input": ["#"], "move_to": "42"},
+      {"state": "42", "input": "[a-z]", "move_to": "43"},
+      {"state": "43", "input": "[a-z]", "move_to": "43"}
     ]
 }

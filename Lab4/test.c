@@ -8,7 +8,9 @@ comment
 
 int main() {
     const int dec = 10;
-    const char ch = 'a';
+    const int oct = 080;
+    const int hex = 0xA10;
+    const char ch = '\n';
     const char* str = "string";
     const float fl = 1.0;
     print_hello();
