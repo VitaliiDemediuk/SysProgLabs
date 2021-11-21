@@ -28,7 +28,8 @@
       {"state": "23", "is_final_state": true, "name": "operator", "color": "blue"},
       {"state": "24", "is_final_state": true, "name": "operator", "color": "blue"},
       {"state": "25", "is_final_state": true, "name": "operator", "color": "blue"},
-      {"state": "26", "is_final_state": true, "name": "operator", "color": "blue"}
+      {"state": "26", "is_final_state": true, "name": "operator", "color": "blue"},
+      {"state": "27", "is_final_state": true, "name": "identifier", "color": "yellow"}
     ],
   "transitions" :
     [ {"state": "0", "input": ["/"], "move_to": "1"},
@@ -70,6 +71,8 @@
       {"state": "0", "input": ["-"], "move_to": "24"},
       {"state": "24", "input": ["="], "move_to": "13"},
       {"state": "24", "input": [">"], "move_to": "25"},
-      {"state": "24", "input": ["-"], "move_to": "26"}
+      {"state": "24", "input": ["-"], "move_to": "26"},
+      {"state": "0", "input": "[A-Za-z_]", "move_to": "27"},
+      {"state": "27", "input": "\\w", "move_to": "27"}
     ]
 }

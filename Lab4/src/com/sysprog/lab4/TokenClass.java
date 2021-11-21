@@ -5,7 +5,7 @@ public class TokenClass {
     final ConsoleColor color;
 
     // hard code
-    final public static TokenClass keyWord = new TokenClass("Key word", ConsoleColor.YELLOW);
+    final public static TokenClass keyWord = new TokenClass("Key word", ConsoleColor.GREEN);
     final public static TokenClass unrecognizedLexeme = new TokenClass("Unrecognized lexeme", ConsoleColor.RED);
 
     TokenClass(String aName, ConsoleColor aColor)

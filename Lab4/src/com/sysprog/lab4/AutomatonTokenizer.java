@@ -121,7 +121,7 @@ public class AutomatonTokenizer implements VirtualTokenizer {
             }
             if (trData == null) {
                 if (currentState.isFinal()) {
-                    parsedTokens.add(new Token(currentInput.toString(), currentState.tokenClass, currentForwardInput.toString()));
+                    parsedTokens.add(createToken());
                     clearInputs();
                     put(codePoint);
                 } else {
@@ -214,6 +214,8 @@ public class AutomatonTokenizer implements VirtualTokenizer {
         while (source.hasNext() && !automaton.hasToken()) {
             automaton.put(source.next());
         }
-        currentToken = automaton.getToken();
+        var token = automaton.getToken();
+        currentToken = keyWords.contains(token.lexeme) ? new Token(token.lexeme, TokenClass.keyWord, token.forwardInput)
+                                                       : token;
     }
 }
